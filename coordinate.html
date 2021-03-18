@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="author" content="Riccardo Rocca">
+  <meta charset="utf-8">
+  <title>Il mio viaggio a Piacenza e nelle valli</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
+  <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css' type='text/css' />
+
+  <style id="compiled-css" type="text/css">
+    body { margin: 0; padding: 0; }
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    #target {
+        position:absolute; top:0; bottom:0; width:100%;
+        display: flex; justify-content: center; align-items: center;
+        pointer-events: none;
+    }
+    #target img { width:50px; height:50px; }
+    #position {
+        position:absolute; top:10px; left: 120px; height: 20px; width: 300px;
+        background-color: #fff;
+        padding: 15px;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    .menu {
+        background: #fff;
+        position: fixed;
+        z-index: 1;
+        top: 10px;
+        left: 10px;
+        border-radius: 3px;
+        width: 100px;
+        border: 1px solid rgba(0,0,0,0.4);
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px;
+    }
+
+    button {
+        color: #404040;
+        display: block;
+        margin: 0;
+        padding: 0;
+        padding: 5px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0,0,0,0.25);
+        text-align: center;
+        width: 100%;
+        height: 50px;
+    }
+
+    button:hover {background-color: #f8f8f8; color: #404040}
+    button.active {background-color: #3887be; color: #ffffff}
+    button.active:hover {background: #3074a4}
+  </style>
+
+</head>
+
+<body>
+<style>
+  .mapboxgl-popup {
+    max-width: 400px;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  }
+</style>
+
+<div class="menu">
+  <button id="HtmlButton0">Mappe</button>
+  <button id="HtmlButton3">Chiese Antiche</button>
+  <button id="HtmlButton2">Canali</button>
+  <button id="HtmlButton1">Cinte di Mura</button>
+  <button id="HtmlButton4">Fortificazioni esterne</button>
+  <button id="HtmlButton5">Vista Satellitare</button>
+</div>
+
+<div id="map"></div>
+<div id="target"><img src="./target.svg" alt=""></div>
+<div id="position"></div>
+
+<script>
+  var button0 = document.getElementById( 'HtmlButton0' );
+  var button1 = document.getElementById( 'HtmlButton1' );
+  var button2 = document.getElementById( 'HtmlButton2' );
+  var button3 = document.getElementById( 'HtmlButton3' );
+  var button4 = document.getElementById( 'HtmlButton4' );
+  var button5 = document.getElementById( 'HtmlButton5' );
+  HideMaps();
+
+  var position = document.getElementById("position");
+
+	mapboxgl.accessToken = 'pk.eyJ1Ijoicmljcm9jIiwiYSI6ImNpanZyajMxYTBhdmZ0dG01bmVsbG8ybzcifQ.RdmNKeWGLY_fqRmUrM9m4w';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/ricroc/cklv6gyop2n2f17s5hsaxd2eg',
+        center: [9.692497,45.051890],
+        zoom: 14
+    });
+
+    // Add geolocate control to the map.
+    map.addControl(
+        new mapboxgl.GeolocateControl({
+            positionOptions: {enableHighAccuracy: true},
+            trackUserLocation: true
+        })
+    );
+
+    map.addControl(new mapboxgl.NavigationControl());
+
+    map.on("load", function() {
+        updatePosition();
+    });
+
+    map.on("moveend", function() {
+        updatePosition()
+    });
+
+    var updatePosition = function() {
+        var settings = 'Long Lat: [' + map.getCenter().lng.toFixed(6) + ', ' + map.getCenter().lat.toFixed(6) + ']';
+        position.innerText = settings;
+    };
+
+    map.on('load', function () {
+
+      map.addSource('google-source', {
+        'type': 'raster',
+        'tiles': ['https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'],
+        'tileSize': 256
+      });
+
+      map.addLayer(
+        {
+          'id': 'Satellitare Google',
+          'type': 'raster',
+          'source': 'google-source',
+          'paint': {"raster-resampling": "linear"}
+        },
+        'Piacenza Canali 1862'
+      );
+      map.setLayoutProperty('Satellitare Google', 'visibility', 'none');
+
+      map.loadImage('https://riccardorocca.github.io/Il_mio_viaggio_a_Piacenza/star_red.png', function (error, image) {
+        if (error) throw error;
+        map.addImage('star_red', image);
+      });
+
+      map.loadImage('https://riccardorocca.github.io/Il_mio_viaggio_a_Piacenza/star_blue.png', function (error, image) {
+        if (error) throw error;
+        map.addImage('star_blu', image);
+      });
+
+      map.addSource('places', {
+        'type': 'geojson',
+        'data': {
+          'type': 'FeatureCollection',
+          'features': [
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.680042,45.056446]},'properties':{'FBid':'159805742506527','icon':'star_red','title':"Santa Maria di Campagna"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.686295,45.056652]},'properties':{'FBid':'196938192126615','icon':'star_red','title':"San Bartolomeo"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.688276,45.051651]},'properties':{'FBid':'161812892305812','icon':'star_red','title':"San Giovanni in Canale"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.682706,45.056160]},'properties':{'FBid':'221005446386556','icon':'star_red','title':"San Giuseppe in Ospedale"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693802,45.049727]},'properties':{'FBid':'214033183750449','icon':'star_red','title':"Santa Maria in Cortina"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.695108,45.052260]},'properties':{'FBid':'223545676132533','icon':'star_red','title':"Sant'Apollonia"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689478,45.055470]},'properties':{'FBid':'224979949322439','icon':'star_red','title':"San Girolamo"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694227,45.052065]},'properties':{'FBid':'182024120284689','icon':'star_red','title':"San Francesco"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.564461,45.025778]},'properties':{'FBid':'181679880319113','icon':'star_red','title':"Santi Nazaro e Celso"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.699699,45.052236]},'properties':{'FBid':'162659668887801','icon':'star_red','title':"San Lorenzo"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.701741,45.050390]},'properties':{'FBid':'165095441977557','icon':'star_red','title':"San Savino"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.695933,45.053329]},'properties':{'FBid':'172215824598852','icon':'star_red','title':"San Martino in Foro"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693346,45.054314]},'properties':{'FBid':'157649289388839','icon':'star_red','title':"San Dalmazio"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692052,45.051967]},'properties':{'FBid':'222930972860670','icon':'star_red','title':"Sant'Ilario"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.700004,45.056392]},'properties':{'FBid':'148629720290796','icon':'star_red','title':"San Filippo Neri"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689034,45.053615]},'properties':{'FBid':'200137108473390','icon':'star_red','title':"Santa Brigida"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692991,45.057342]},'properties':{'FBid':'186225333197901','icon':'star_red','title':"San Sisto"}},
+
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693078,45.053324]},'properties':{'FBid':'221907349629699','icon':'star_blu','title':"palazzo del governatore"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.687866,45.051882]},'properties':{'FBid':'212490767238024','icon':'star_blu','title':"chiesa s.giovanni in canale"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.695826,45.052996]},'properties':{'FBid':'230470668773367','icon':'star_blu','title':"chiesa di s.pietro"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.690724,45.054757]},'properties':{'FBid':'210598397427261','icon':'star_blu','title':"tempio monte di pieta"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.686447,45.054261]},'properties':{'FBid':'210024720817962','icon':'star_blu','title':"ex chiesa s.bernardo"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689158,45.053987]},'properties':{'FBid':'208771560943278','icon':'star_blu','title':"piazza borgo romana"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689353,45.053733]},'properties':{'FBid':'208579667629134','icon':'star_blu','title':"torre medievale"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.685932,45.054206]},'properties':{'FBid':'206782807808820','icon':'star_blu','title':"palazzo marazzani"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.684291,45.054261]},'properties':{'FBid':'206121971208237','icon':'star_blu','title':"palazzo barattieri"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.696013,45.047404]},'properties':{'FBid':'205153821305052','icon':'star_blu','title':"chiesa s.agostino"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.690406,45.051900]},'properties':{'FBid':'204452564708511','icon':'star_blu','title':"palazzo mulazzani"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693635,45.052658]},'properties':{'FBid':'204210228066078','icon':'star_blu','title':"Gian Domenico romagnosi"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692661,45.052114]},'properties':{'FBid':'202390361581398','icon':'star_blu','title':"palazzo dei mercanti"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.684773,45.054204]},'properties':{'FBid':'201414448345656','icon':'star_blu','title':"palazzo Somaglia"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689934,45.053304]},'properties':{'FBid':'200597751760659','icon':'star_blu','title':"palazzo Volpe LANDI"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689250,45.052855]},'properties':{'FBid':'198564775297290','icon':'star_blu','title':"palazzo laviosa"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.686726,45.059097]},'properties':{'FBid':'196938192126615','icon':'star_blu','title':"chiesa s.bartolomeo"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692139,45.052871]},'properties':{'FBid':'196618075491960','icon':'star_blu','title':"loggetta delle grida"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.702364,45.056924]},'properties':{'FBid':'190203802800054','icon':'star_blu','title':"porta fodesta"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693338,45.054118]},'properties':{'FBid':'185800369907064','icon':'star_blu','title':"ex hotel s.marco"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.697662,45.055739]},'properties':{'FBid':'184587430028358','icon':'star_blu','title':"anfiteatro romano"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692689,45.052724]},'properties':{'FBid':'184455593374875','icon':'star_blu','title':"scoperte su palazzo gotico"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689635,45.049506]},'properties':{'FBid':'183300830157018','icon':'star_blu','title':"chiesa .s.teresa"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.700412,45.053686]},'properties':{'FBid':'182955266858241','icon':'star_blu','title':"chiesa delle benedettine"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693759,45.052684]},'properties':{'FBid':'181885956965172','icon':'star_blu','title':"torre dell'orologio"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.684567,45.054385]},'properties':{'FBid':'181679880319113','icon':'star_blu','title':"ss.nazaro e celso"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.700787,45.057944]},'properties':{'FBid':'','icon':'star_blu','title':""}},
+          ]
+        }
+      });
+
+      // Add a layer showing the places.
+      map.addLayer({
+        'id': 'places',
+        'type': 'symbol',
+        'source': 'places',
+        'layout': {
+            'icon-image': ['get','icon'],
+            'icon-allow-overlap': true
+        }
+      });
+
+      // When a click event occurs on a feature in the places layer, open a popup at the
+      // location of the feature, with description HTML from its properties.
+      map.on('click', 'places', function (e) {
+          var coordinates = e.features[0].geometry.coordinates.slice();
+          var title = e.features[0].properties.title;
+          var FBid = e.features[0].properties.FBid;
+
+          // Ensure that if the map is zoomed out such that multiple
+          // copies of the feature are visible, the popup appears
+          // over the copy being pointed to.
+          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        new mapboxgl.Popup({closeButton: false})
+        .setLngLat(coordinates)
+        //.setHTML(description+" - "+urlid)
+        .setHTML('<a href="https://m.facebook.com/mikilaviaggiatrice/posts/'+FBid+'" target="_blank">'+title+'</a>')
+        .addTo(map);
+      });
+
+      // Change the cursor to a pointer when the mouse is over the places layer.
+      map.on('mouseenter', 'places', function () {
+        map.getCanvas().style.cursor = 'pointer';
+      });
+
+      // Change it back to a pointer when it leaves.
+      map.on('mouseleave', 'places', function () {
+        map.getCanvas().style.cursor = '';
+      });
+
+    });
+
+    button0.onclick = function () {
+      if (button0.className === 'active') {
+        HideMaps();
+      } else {
+        ShowMaps();
+      }
+    };
+
+    button1.onclick = function () {
+      if (button1.className === 'active') {
+        map.setLayoutProperty('Piacenza Mura Archistorica', 'visibility', 'none');
+        button1.className = 'inactive';
+      } else {
+        InactiveButtons();
+        map.setLayoutProperty('Piacenza Mura Archistorica', 'visibility', 'visible');
+        button1.className = 'active';
+      }
+    };
+
+    button2.onclick = function () {
+      if (button2.className === 'active') {
+        map.setLayoutProperty('Piacenza Canali 1862', 'visibility', 'none');
+        button2.className = 'inactive';
+      } else {
+        InactiveButtons();
+        map.setLayoutProperty('Piacenza Canali 1862', 'visibility', 'visible');
+        button2.className = 'active';
+      }
+    };
+
+    button3.onclick = function () {
+      if (button3.className === 'active') {
+        map.setLayoutProperty('Piacenza Chiese Scomparse', 'visibility', 'none');
+        button3.className = 'inactive';
+      } else {
+        InactiveButtons();
+        map.setLayoutProperty('Piacenza Chiese Scomparse', 'visibility', 'visible');
+        button3.className = 'active';
+      }
+    };
+
+    button4.onclick = function () {
+      if (button4.className === 'active') {
+        map.setLayoutProperty('Piacenza Fortificazioni', 'visibility', 'none');
+        button4.className = 'inactive';
+      } else {
+        InactiveButtons();
+        map.setLayoutProperty('Piacenza Fortificazioni', 'visibility', 'visible');
+        button4.className = 'active';
+      }
+    };
+
+    button5.onclick = function () {
+      if (button5.className === 'active') {
+        map.setLayoutProperty('Satellitare Google', 'visibility', 'none');
+        button5.className = 'inactive';
+      } else {
+        map.setLayoutProperty('Satellitare Google', 'visibility', 'visible');
+        button5.className = 'active';
+      }
+    };
+
+    function InactiveButtons() {
+      map.setLayoutProperty('Piacenza Mura Archistorica', 'visibility', 'none');
+      button1.className = 'inactive';
+      map.setLayoutProperty('Piacenza Canali 1862', 'visibility', 'none');
+      button2.className = 'inactive';
+      map.setLayoutProperty('Piacenza Chiese Scomparse', 'visibility', 'none');
+      button3.className = 'inactive';
+      map.setLayoutProperty('Piacenza Fortificazioni', 'visibility', 'none');
+      button4.className = 'inactive';
+    }
+
+    function ShowMaps() {
+      button0.className = 'active';
+      button1.style.display = "block";
+      button2.style.display = "block";
+      button3.style.display = "block";
+      button4.style.display = "block";
+      button5.style.display = "block";
+      return;
+    }
+
+    function HideMaps() {
+      button0.className = 'inactive';
+      button1.style.display = "none";
+      button2.style.display = "none";
+      button3.style.display = "none";
+      button4.style.display = "none";
+      button5.style.display = "none";
+      return;
+    }
+
+  </script>
+
+</body>
+</html>

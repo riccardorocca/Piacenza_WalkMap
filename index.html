@@ -73,7 +73,8 @@
   <button id="HtmlButton2">Canali</button>
   <button id="HtmlButton1">Cinte di Mura</button>
   <button id="HtmlButton4">Fortificazioni esterne</button>
-  <button id="HtmlButton5">Vista Satellitare</button>
+  <button id="HtmlButton5">La Tagliata</button>
+  <button id="HtmlButton6">Vista Satellitare</button>
 </div>
 
 <div id="map"></div>
@@ -84,6 +85,7 @@
   var button3 = document.getElementById( 'HtmlButton3' );
   var button4 = document.getElementById( 'HtmlButton4' );
   var button5 = document.getElementById( 'HtmlButton5' );
+  var button6 = document.getElementById( 'HtmlButton6' );
   HideMaps();
 
 	mapboxgl.accessToken = 'pk.eyJ1Ijoicmljcm9jIiwiYSI6ImNpanZyajMxYTBhdmZ0dG01bmVsbG8ybzcifQ.RdmNKeWGLY_fqRmUrM9m4w';
@@ -104,6 +106,8 @@
             trackUserLocation: true
         })
     );
+
+    map.addControl(new mapboxgl.NavigationControl());
 
     map.on('load', function () {
 
@@ -158,6 +162,9 @@
                 {'type':'Feature','geometry':{'type':'Point','coordinates':[9.68747,45.05393]},'properties':{'FBid':'222856606201440','title':"Palazzina via Taverna"}},
                 {'type':'Feature','geometry':{'type':'Point','coordinates':[9.70472,45.04924]},'properties':{'FBid':'222174072936360','title':"Via del Pozzo"}},
                 {'type':'Feature','geometry':{'type':'Point','coordinates':[9.69790,45.05012]},'properties':{'FBid':'221327553021012','title':"Il Guercino"}},
+                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.718992,45.039623]},'properties':{'FBid':'169509084869526','FBfmt':'story','icon':'star_blu','title':"Colonna della Tagliata"}},
+                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.710745,45.035671]},'properties':{'FBid':'169509084869526','FBfmt':'story','icon':'star_blu','title':"Colonna della Tagliata"}},
+                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.679674,45.050031]},'properties':{'FBid':'169509084869526','FBfmt':'story','icon':'star_blu','title':"Bastione S. Benedetto"}},
               ]
             }
           });
@@ -192,7 +199,7 @@
         new mapboxgl.Popup({closeButton: false})
         .setLngLat(coordinates)
         //.setHTML(description+" - "+urlid)
-        .setHTML('<a href="https://www.facebook.com/mikilaviaggiatrice/posts/'+FBid+'" target="_blank">'+title+'</a>')
+        .setHTML('<a href="https://m.facebook.com/mikilaviaggiatrice/posts/'+FBid+'" target="_blank">'+title+'</a>')
         .addTo(map);
       });
 
@@ -262,11 +269,22 @@
 
     button5.onclick = function () {
       if (button5.className === 'active') {
-        map.setLayoutProperty('Satellitare Google', 'visibility', 'none');
+        map.setLayoutProperty('Piacenza La Tagliata', 'visibility', 'none');
         button5.className = 'inactive';
       } else {
-        map.setLayoutProperty('Satellitare Google', 'visibility', 'visible');
+        InactiveButtons();
+        map.setLayoutProperty('Piacenza La Tagliata', 'visibility', 'visible');
         button5.className = 'active';
+      }
+    };
+
+    button6.onclick = function () {
+      if (button6.className === 'active') {
+        map.setLayoutProperty('Satellitare Google', 'visibility', 'none');
+        button6.className = 'inactive';
+      } else {
+        map.setLayoutProperty('Satellitare Google', 'visibility', 'visible');
+        button6.className = 'active';
       }
     };
 
@@ -279,6 +297,8 @@
       button3.className = 'inactive';
       map.setLayoutProperty('Piacenza Fortificazioni', 'visibility', 'none');
       button4.className = 'inactive';
+      map.setLayoutProperty('Piacenza La Tagliata', 'visibility', 'none');
+      button5.className = 'inactive';
     }
 
     function ShowMaps() {
@@ -288,6 +308,7 @@
       button3.style.display = "block";
       button4.style.display = "block";
       button5.style.display = "block";
+      button6.style.display = "block";
       return;
     }
 
@@ -298,6 +319,7 @@
       button3.style.display = "none";
       button4.style.display = "none";
       button5.style.display = "none";
+      button6.style.display = "none";
       return;
     }
 

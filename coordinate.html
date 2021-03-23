@@ -72,8 +72,7 @@
   <button id="HtmlButton2">Canali</button>
   <button id="HtmlButton1">Cinte di Mura</button>
   <button id="HtmlButton4">Fortificazioni esterne</button>
-  <button id="HtmlButton5">La Tagliata</button>
-  <button id="HtmlButton6">Vista Satellitare</button>
+  <button id="HtmlButton5">Vista Satellitare</button>
 </div>
 
 <div id="map"></div>
@@ -87,7 +86,6 @@
   var button3 = document.getElementById( 'HtmlButton3' );
   var button4 = document.getElementById( 'HtmlButton4' );
   var button5 = document.getElementById( 'HtmlButton5' );
-  var button6 = document.getElementById( 'HtmlButton6' );
   HideMaps();
 
   var position = document.getElementById("position");
@@ -334,22 +332,11 @@
 
     button5.onclick = function () {
       if (button5.className === 'active') {
-        map.setLayoutProperty('Piacenza La Tagliata', 'visibility', 'none');
+        map.setLayoutProperty('Satellitare Google', 'visibility', 'none');
         button5.className = 'inactive';
       } else {
-        InactiveButtons();
-        map.setLayoutProperty('Piacenza La Tagliata', 'visibility', 'visible');
-        button5.className = 'active';
-      }
-    };
-
-    button6.onclick = function () {
-      if (button6.className === 'active') {
-        map.setLayoutProperty('Satellitare Google', 'visibility', 'none');
-        button6.className = 'inactive';
-      } else {
         map.setLayoutProperty('Satellitare Google', 'visibility', 'visible');
-        button6.className = 'active';
+        button5.className = 'active';
       }
     };
 
@@ -362,8 +349,6 @@
       button3.className = 'inactive';
       map.setLayoutProperty('Piacenza Fortificazioni', 'visibility', 'none');
       button4.className = 'inactive';
-      map.setLayoutProperty('Piacenza La Tagliata', 'visibility', 'none');
-      button5.className = 'inactive';
     }
 
     function ShowMaps() {
@@ -373,7 +358,6 @@
       button3.style.display = "block";
       button4.style.display = "block";
       button5.style.display = "block";
-      button6.style.display = "block";
       return;
     }
 
@@ -384,7 +368,6 @@
       button3.style.display = "none";
       button4.style.display = "none";
       button5.style.display = "none";
-      button6.style.display = "none";
       return;
     }
 

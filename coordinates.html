@@ -152,6 +152,11 @@
         map.addImage('star_blu', image);
       });
 
+      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/star_green.png', function (error, image) {
+        if (error) throw error;
+        map.addImage('star_grn', image);
+      });
+
       map.addSource('places', {
         'type': 'geojson',
         'data': {
@@ -231,10 +236,11 @@
             {'type':'Feature','geometry':{'type':'Point','coordinates':[9.691972,45.048885]},'properties':{'FBid':'166238111863290','Fbfmt':'story','icon':'star_blu','title':"Galleria Ricci Oddi"}},
             {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693338,45.053860]},'properties':{'FBid':'164722855348149','Fbfmt':'story','icon':'star_blu','title':"hotel Roma"}},
             {'type':'Feature','geometry':{'type':'Point','coordinates':[9.696960,45.045111]},'properties':{'FBid':'163969455423489','Fbfmt':'story','icon':'star_blu','title':"Mura Farnesiane"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.695484,45.049358]},'properties':{'FBid':'227257858763278','Fbfmt':'story','icon':'star_blu','title':"Palazzo Giacometti"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694230,45.050305]},'properties':{'FBid':'226295032192894','Fbfmt':'story','icon':'star_blu','title':"Palazzo Landi di Rivalta"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693674,45.049760]},'properties':{'FBid':'225747255581005','Fbfmt':'story','icon':'star_blu','title':"Teatro Verdi"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692421,45.050937]},'properties':{'FBid':'225019722320425','Fbfmt':'story','icon':'star_blu','title':"Palazzo Scotti di Sarmato"}},
+
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.695484,45.049358]},'properties':{'FBid':'227257858763278','Fbfmt':'story','icon':'star_grn','title':"Palazzo Giacometti"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694230,45.050305]},'properties':{'FBid':'226295032192894','Fbfmt':'story','icon':'star_grn','title':"Palazzo Landi di Rivalta"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693674,45.049760]},'properties':{'FBid':'225747255581005','Fbfmt':'story','icon':'star_grn','title':"Teatro Verdi"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692421,45.050937]},'properties':{'FBid':'225019722320425','Fbfmt':'story','icon':'star_grn','title':"Palazzo Scotti di Sarmato"}},
           ]
         }
       });

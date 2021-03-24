@@ -239,7 +239,7 @@
 
             {'type':'Feature','geometry':{'type':'Point','coordinates':[9.695484,45.049358]},'properties':{'FBid':'227257858763278','Fbfmt':'posts','icon':'star_grn','title':"Palazzo Giacometti"}},
             {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694230,45.050305]},'properties':{'FBid':'226295032192894','Fbfmt':'posts','icon':'star_grn','title':"Palazzo Landi di Rivalta"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693674,45.049760]},'properties':{'FBid':'225747255581005','Fbfmt':'posts','icon':'star_grn','title':"Teatro Verdi"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693674,45.049760]},'properties':{'FBid':'225747255581005','Fbfmt':'story','icon':'star_grn','title':"Teatro Verdi"}},
             {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692421,45.050937]},'properties':{'FBid':'225019722320425','Fbfmt':'posts','icon':'star_grn','title':"Palazzo Scotti di Sarmato"}},
           ]
         }
@@ -271,7 +271,7 @@
           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
         }
 
-        if (FBfmt == "posts") {var FBurl = 'https://www.facebook.com/mikilaviaggiatrice/posts/' + FBid}
+        if (FBfmt === "posts") {var FBurl = 'https://www.facebook.com/mikilaviaggiatrice/posts/' + FBid}
         else {var FBurl = 'https://www.facebook.com/story.php?story_fbid=' + FBid + '&id=112355057251596'}
 
         new mapboxgl.Popup({closeButton: false})

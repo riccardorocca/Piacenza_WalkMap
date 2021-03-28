@@ -124,107 +124,120 @@
       );
       map.setLayoutProperty('Satellitare Google', 'visibility', 'none');
 
-      map.loadImage(
-        // Add an image to use as a custom marker
-        'https://riccardorocca.github.io/Piacenza_WalkMap/star_red.png',
-        function (error, image) {
-          if (error) throw error;
-          map.addImage('custom-marker', image);
+      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/star_red.png', function (error, image) {
+        if (error) throw error;
+        map.addImage('star_red', image);
+      });
 
-          map.addSource('places', {
-            'type': 'geojson',
-            'data': {
-              'type': 'FeatureCollection',
-              'features': [
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.697615,45.055558]},'properties':{'FBid':'184587430028358','FBfmt':'story','icon':'star_grn','title':"Anfiteatro Romano"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.679658,45.050062]},'properties':{'FBid':'169509084869526','FBfmt':'story','icon':'star_grn','title':"Bastione San Benedetto"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.691192,45.053330]},'properties':{'FBid':'207030944450673','FBfmt':'story','icon':'star_grn','title':"Canton dal Giass"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.682674,45.052959]},'properties':{'FBid':'170761838077584','FBfmt':'story','icon':'star_grn','title':"Castello Farnesiano"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.700461,45.053431]},'properties':{'FBid':'182955266858241','FBfmt':'story','icon':'star_red','title':"Chiesa delle Benedettine"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.696231,45.052611]},'properties':{'FBid':'230470668773367','FBfmt':'story','icon':'star_red','title':"Chiesa di San Pietro"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.686295,45.056652]},'properties':{'FBid':'196938192126615','FBfmt':'story','icon':'star_red','title':"Chiesa San Bartolomeo"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693346,45.054314]},'properties':{'FBid':'157649289388839','FBfmt':'story','icon':'star_red','title':"Chiesa San Dalmazio"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694368,45.054608]},'properties':{'FBid':'174725464347888','FBfmt':'story','icon':'star_red','title':"Chiesa San Fermo"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.700004,45.056392]},'properties':{'FBid':'148629720290796','FBfmt':'story','icon':'star_red','title':"Chiesa San Filippo Neri"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694227,45.052065]},'properties':{'FBid':'182024120284689','FBfmt':'story','icon':'star_red','title':"Chiesa San Francesco"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.688276,45.051651]},'properties':{'FBid':'161812892305812','FBfmt':'story','icon':'star_red','title':"Chiesa San Giovanni in Canale"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689478,45.055470]},'properties':{'FBid':'224979949322439','FBfmt':'story','icon':'star_red','title':"Chiesa San Girolamo"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.682706,45.056160]},'properties':{'FBid':'221005446386556','FBfmt':'story','icon':'star_red','title':"Chiesa San Giuseppe in Ospedale"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.699699,45.052236]},'properties':{'FBid':'162659668887801','FBfmt':'story','icon':'star_red','title':"Chiesa San Lorenzo"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.695933,45.053329]},'properties':{'FBid':'172215824598852','FBfmt':'story','icon':'star_red','title':"Chiesa San Martino in Foro"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.701741,45.050390]},'properties':{'FBid':'165095441977557','FBfmt':'story','icon':'star_red','title':"Chiesa San Savino"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.685019,45.055260]},'properties':{'FBid':'173250477828720','FBfmt':'story','icon':'star_red','title':"Chiesa San Sepolcro"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692991,45.057342]},'properties':{'FBid':'186225333197901','FBfmt':'story','icon':'star_red','title':"Chiesa San Sisto"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689034,45.053615]},'properties':{'FBid':'200137108473390','FBfmt':'story','icon':'star_red','title':"Chiesa Santa Brigida"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.680042,45.056446]},'properties':{'FBid':'159805742506527','FBfmt':'story','icon':'star_red','title':"Chiesa Santa Maria di Campagna"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.698096,45.053952]},'properties':{'FBid':'191390096014758','FBfmt':'story','icon':'star_red','title':"Chiesa Santa Maria Gariverto"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693802,45.049727]},'properties':{'FBid':'214033183750449','FBfmt':'story','icon':'star_red','title':"Chiesa Santa Maria in Cortina"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689597,45.049509]},'properties':{'FBid':'183300830157018','FBfmt':'story','icon':'star_red','title':"Chiesa Santa Teresa"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692958,45.047517]},'properties':{'FBid':'205153821305052','FBfmt':'story','icon':'star_red','title':"Chiesa Sant'Agostino"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.695108,45.052260]},'properties':{'FBid':'223545676132533','FBfmt':'story','icon':'star_red','title':"Chiesa Sant'Apollonia"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.564461,45.025778]},'properties':{'FBid':'181679880319113','FBfmt':'story','icon':'star_red','title':"Chiesa Santi Nazaro e Celso"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692052,45.051967]},'properties':{'FBid':'222930972860670','FBfmt':'story','icon':'star_red','title':"Chiesa Sant'Ilario"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.698070,45.057376]},'properties':{'FBid':'170026168151151','FBfmt':'story','icon':'star_grn','title':"Cittadella Vegia"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.718989,45.039621]},'properties':{'FBid':'169509084869526','FBfmt':'story','icon':'star_grn','title':"Colonna della Tagliata"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.710736,45.035680]},'properties':{'FBid':'169509084869526','FBfmt':'story','icon':'star_grn','title':"Colonna della Tagliata"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.686266,45.053373]},'properties':{'FBid':'210024720817962','FBfmt':'story','icon':'star_red','title':"ex Chiesa San Bernardo"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.680683,45.056349]},'properties':{'FBid':'212490767238024','FBfmt':'story','icon':'star_red','title':"ex Chiesa Santa Vittoria"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.700235,45.055501]},'properties':{'FBid':'191116606042107','FBfmt':'story','icon':'star_red','title':"ex Chiesa Sant'Agnese"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692889,45.054141]},'properties':{'FBid':'185800369907064','FBfmt':'story','icon':'star_blu','title':"ex Hotel San Marco"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692868,45.052940]},'properties':{'FBid':'216220516865049','FBfmt':'story','icon':'star_blu','title':"ex Palazzo dei Notai"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689508,45.054132]},'properties':{'FBid':'174510374369397','FBfmt':'story','icon':'star_grn','title':"ex Quartiere Ebraico"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.695825,45.053305]},'properties':{'FBid':'173999511087150','FBfmt':'story','icon':'star_grn','title':"Foro Romano"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692047,45.049050]},'properties':{'FBid':'166238111863290','FBfmt':'story','icon':'star_red','title':"Galleria Ricci Oddi"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693629,45.052425]},'properties':{'FBid':'204210228066078','FBfmt':'story','icon':'star_grn','title':"Gian Domenico Romagnosi"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693300,45.053778]},'properties':{'FBid':'164722855348149','FBfmt':'story','icon':'star_blu','title':"Hotel Roma"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.688334,45.055048]},'properties':{'FBid':'227981705688930','FBfmt':'story','icon':'star_blu','title':"Istituto d'Arte Gazzola"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692226,45.052590]},'properties':{'FBid':'196618075491960','FBfmt':'story','icon':'star_grn','title':"Loggetta delle Grida"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.701522,45.052635]},'properties':{'FBid':'190917082728726','FBfmt':'story','icon':'star_grn','title':"Mulino della Sussistenza"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.683761,45.058543]},'properties':{'FBid':'163969455423489','FBfmt':'story','icon':'star_grn','title':"Mura Farnesiane"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.684362,45.054047]},'properties':{'FBid':'206121971208237','FBfmt':'story','icon':'star_blu','title':"Palazzo Barattieri"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692492,45.052048]},'properties':{'FBid':'202390361581398','FBfmt':'story','icon':'star_blu','title':"Palazzo dei Mercanti"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693355,45.052789]},'properties':{'FBid':'221907349629699','FBfmt':'story','icon':'star_blu','title':"Palazzo del Governatore"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.695682,45.049323]},'properties':{'FBid':'227257858763278','FBfmt':'posts','icon':'star_blu','title':"Palazzo Giacometti"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692923,45.052485]},'properties':{'FBid':'184455593374875','FBfmt':'story','icon':'star_blu','title':"Palazzo Gotico"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694199,45.050188]},'properties':{'FBid':'226295032192894','FBfmt':'posts','icon':'star_blu','title':"Palazzo Landi di Rivalta"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689144,45.052617]},'properties':{'FBid':'198564775297290','FBfmt':'story','icon':'star_blu','title':"Palazzo Laviosa"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.685768,45.054037]},'properties':{'FBid':'206782807808820','FBfmt':'story','icon':'star_blu','title':"Palazzo Marazzani"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.690215,45.051649]},'properties':{'FBid':'204452564708511','FBfmt':'story','icon':'star_blu','title':"Palazzo Mulazzani"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689602,45.053210]},'properties':{'FBid':'187644393055995','FBfmt':'story','icon':'star_blu','title':"Palazzo Portapuglia"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694971,45.049713]},'properties':{'FBid':'176726677481100','FBfmt':'story','icon':'star_blu','title':"Palazzo Sanseverino Marazzani"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.685692,45.054055]},'properties':{'FBid':'203066411513793','FBfmt':'story','icon':'star_blu','title':"Palazzo Scotti Castelbosco"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.690673,45.052523]},'properties':{'FBid':'201109275042840','FBfmt':'story','icon':'star_blu','title':"Palazzo Scotti di Podenzano"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692224,45.050614]},'properties':{'FBid':'225019722320425','FBfmt':'posts','icon':'star_blu','title':"Palazzo Scotti di Sarmato"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689540,45.051915]},'properties':{'FBid':'204995951320839','FBfmt':'story','icon':'star_blu','title':"Palazzo Scotti di Vigoleno"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.684561,45.054040]},'properties':{'FBid':'201414448345656','FBfmt':'story','icon':'star_blu','title':"Palazzo Somaglia"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689788,45.053085]},'properties':{'FBid':'200597751760659','FBfmt':'story','icon':'star_blu','title':"Palazzo Volpe Landi"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689355,45.053691]},'properties':{'FBid':'208771560943278','FBfmt':'story','icon':'star_grn','title':"Piazza Borgo Romana"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.701647,45.056893]},'properties':{'FBid':'190203802800054','FBfmt':'story','icon':'star_grn','title':"Porta Fodesta"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.706936,45.047962]},'properties':{'FBid':'187185319768569','FBfmt':'story','icon':'star_grn','title':"Porta San Lazzaro"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.648406,45.054899]},'properties':{'FBid':'168315548322213','FBfmt':'story','icon':'star_red','title':"Sant'Antonio a Trebbia"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694928,45.055782]},'properties':{'FBid':'178397123980722','FBfmt':'story','icon':'star_grn','title':"Scuderie di Marialuigia"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693184,45.052437]},'properties':{'FBid':'192906192529815','FBfmt':'story','icon':'star_grn','title':"Statua di Alessandro Farnese"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692781,45.052783]},'properties':{'FBid':'192906192529815','FBfmt':'story','icon':'star_grn','title':"Statua di Ranuccio Farnese"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693458,45.049697]},'properties':{'FBid':'225747255581005','FBfmt':'posts','icon':'star_blu','title':"Teatro Verdi"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689826,45.054021]},'properties':{'FBid':'210598397427261','FBfmt':'story','icon':'star_grn','title':"Tempio Romano-Monte di Pietà"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693690,45.052462]},'properties':{'FBid':'181885956965172','FBfmt':'story','icon':'star_blu','title':"Torre dell'Orologio"}},
-                {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689391,45.053635]},'properties':{'FBid':'208579667629134','FBfmt':'story','icon':'star_blu','title':"Torre Medievale"}},
-              ]
-            }
-          });
+      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/star_blue.png', function (error, image) {
+        if (error) throw error;
+        map.addImage('star_blu', image);
+      });
 
-          // Add a layer showing the places.
-          map.addLayer({
-            'id': 'places',
-            'type': 'symbol',
-            'source': 'places',
-            'layout': {
-                'icon-image': 'custom-marker',
-                'icon-allow-overlap': true
-            }
-          });
+      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/star_green.png', function (error, image) {
+        if (error) throw error;
+        map.addImage('star_grn', image);
+      });
+
+      map.addSource('places', {
+        'type': 'geojson',
+        'data': {
+          'type': 'FeatureCollection',
+          'features': [
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.697615,45.055558]},'properties':{'FBid':'184587430028358','FBfmt':'story','icon':'star_grn','title':"Anfiteatro Romano"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.679658,45.050062]},'properties':{'FBid':'169509084869526','FBfmt':'story','icon':'star_grn','title':"Bastione San Benedetto"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.691192,45.053330]},'properties':{'FBid':'207030944450673','FBfmt':'story','icon':'star_grn','title':"Canton dal Giass"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.682674,45.052959]},'properties':{'FBid':'170761838077584','FBfmt':'story','icon':'star_grn','title':"Castello Farnesiano"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.700461,45.053431]},'properties':{'FBid':'182955266858241','FBfmt':'story','icon':'star_red','title':"Chiesa delle Benedettine"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.696231,45.052611]},'properties':{'FBid':'230470668773367','FBfmt':'story','icon':'star_red','title':"Chiesa di San Pietro"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.686295,45.056652]},'properties':{'FBid':'196938192126615','FBfmt':'story','icon':'star_red','title':"Chiesa San Bartolomeo"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693346,45.054314]},'properties':{'FBid':'157649289388839','FBfmt':'story','icon':'star_red','title':"Chiesa San Dalmazio"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694368,45.054608]},'properties':{'FBid':'174725464347888','FBfmt':'story','icon':'star_red','title':"Chiesa San Fermo"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.700004,45.056392]},'properties':{'FBid':'148629720290796','FBfmt':'story','icon':'star_red','title':"Chiesa San Filippo Neri"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694227,45.052065]},'properties':{'FBid':'182024120284689','FBfmt':'story','icon':'star_red','title':"Chiesa San Francesco"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.688276,45.051651]},'properties':{'FBid':'161812892305812','FBfmt':'story','icon':'star_red','title':"Chiesa San Giovanni in Canale"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689438,45.055354]},'properties':{'FBid':'224979949322439','FBfmt':'story','icon':'star_red','title':"Chiesa San Girolamo"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.682706,45.056160]},'properties':{'FBid':'221005446386556','FBfmt':'story','icon':'star_red','title':"Chiesa San Giuseppe in Ospedale"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.683065,45.054540]},'properties':{'FBid':'211832630637171','FBfmt':'story','icon':'star_blu','title':"Ospedale Grande"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.699699,45.052236]},'properties':{'FBid':'162659668887801','FBfmt':'story','icon':'star_red','title':"Chiesa San Lorenzo"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.695933,45.053329]},'properties':{'FBid':'172215824598852','FBfmt':'story','icon':'star_red','title':"Chiesa San Martino in Foro"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.701741,45.050390]},'properties':{'FBid':'165095441977557','FBfmt':'story','icon':'star_red','title':"Chiesa San Savino"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.685019,45.055260]},'properties':{'FBid':'173250477828720','FBfmt':'story','icon':'star_red','title':"Chiesa San Sepolcro"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692991,45.057342]},'properties':{'FBid':'186225333197901','FBfmt':'story','icon':'star_red','title':"Chiesa San Sisto"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689034,45.053615]},'properties':{'FBid':'200137108473390','FBfmt':'story','icon':'star_red','title':"Chiesa Santa Brigida"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.680042,45.056446]},'properties':{'FBid':'159805742506527','FBfmt':'story','icon':'star_red','title':"Chiesa Santa Maria di Campagna"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.698096,45.053952]},'properties':{'FBid':'191390096014758','FBfmt':'story','icon':'star_red','title':"Chiesa Santa Maria Gariverto"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693802,45.049727]},'properties':{'FBid':'214033183750449','FBfmt':'story','icon':'star_red','title':"Chiesa Santa Maria in Cortina"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689597,45.049509]},'properties':{'FBid':'183300830157018','FBfmt':'story','icon':'star_red','title':"Chiesa Santa Teresa"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692958,45.047517]},'properties':{'FBid':'205153821305052','FBfmt':'story','icon':'star_red','title':"Chiesa Sant'Agostino"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.695108,45.052260]},'properties':{'FBid':'223545676132533','FBfmt':'story','icon':'star_red','title':"Chiesa Sant'Apollonia"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.564461,45.025778]},'properties':{'FBid':'181679880319113','FBfmt':'story','icon':'star_red','title':"Chiesa Santi Nazaro e Celso"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.691973,45.051850]},'properties':{'FBid':'222930972860670','FBfmt':'story','icon':'star_red','title':"Chiesa Sant'Ilario"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.698070,45.057376]},'properties':{'FBid':'170026168151151','FBfmt':'story','icon':'star_grn','title':"Cittadella Vegia"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.718989,45.039621]},'properties':{'FBid':'169509084869526','FBfmt':'story','icon':'star_grn','title':"Colonna della Tagliata"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.710736,45.035680]},'properties':{'FBid':'169509084869526','FBfmt':'story','icon':'star_grn','title':"Colonna della Tagliata"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.686266,45.053373]},'properties':{'FBid':'210024720817962','FBfmt':'story','icon':'star_red','title':"ex Chiesa San Bernardo"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.680683,45.056349]},'properties':{'FBid':'212490767238024','FBfmt':'story','icon':'star_red','title':"ex Chiesa Santa Vittoria"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.700235,45.055501]},'properties':{'FBid':'191116606042107','FBfmt':'story','icon':'star_red','title':"ex Chiesa Sant'Agnese"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692889,45.054141]},'properties':{'FBid':'185800369907064','FBfmt':'story','icon':'star_blu','title':"ex Hotel San Marco"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692868,45.052940]},'properties':{'FBid':'216220516865049','FBfmt':'story','icon':'star_blu','title':"ex Palazzo dei Notai"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689508,45.054132]},'properties':{'FBid':'174510374369397','FBfmt':'story','icon':'star_grn','title':"ex Quartiere Ebraico"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.695825,45.053305]},'properties':{'FBid':'173999511087150','FBfmt':'story','icon':'star_grn','title':"Foro Romano"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692047,45.049050]},'properties':{'FBid':'166238111863290','FBfmt':'story','icon':'star_red','title':"Galleria Ricci Oddi"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693629,45.052425]},'properties':{'FBid':'204210228066078','FBfmt':'story','icon':'star_grn','title':"Gian Domenico Romagnosi"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693300,45.053778]},'properties':{'FBid':'164722855348149','FBfmt':'story','icon':'star_blu','title':"Hotel Roma"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.688334,45.055048]},'properties':{'FBid':'227981705688930','FBfmt':'story','icon':'star_blu','title':"Istituto d'Arte Gazzola"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692226,45.052590]},'properties':{'FBid':'196618075491960','FBfmt':'story','icon':'star_grn','title':"Loggetta delle Grida"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.701522,45.052635]},'properties':{'FBid':'190917082728726','FBfmt':'story','icon':'star_grn','title':"Mulino della Sussistenza"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.683761,45.058543]},'properties':{'FBid':'163969455423489','FBfmt':'story','icon':'star_grn','title':"Mura Farnesiane"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.684362,45.054047]},'properties':{'FBid':'206121971208237','FBfmt':'story','icon':'star_blu','title':"Palazzo Barattieri"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692492,45.052048]},'properties':{'FBid':'202390361581398','FBfmt':'story','icon':'star_blu','title':"Palazzo dei Mercanti"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693355,45.052789]},'properties':{'FBid':'221907349629699','FBfmt':'story','icon':'star_blu','title':"Palazzo del Governatore"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.695682,45.049323]},'properties':{'FBid':'227257858763278','FBfmt':'posts','icon':'star_blu','title':"Palazzo Giacometti"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692923,45.052485]},'properties':{'FBid':'184455593374875','FBfmt':'story','icon':'star_blu','title':"Palazzo Gotico"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694199,45.050188]},'properties':{'FBid':'226295032192894','FBfmt':'posts','icon':'star_blu','title':"Palazzo Landi di Rivalta"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689144,45.052617]},'properties':{'FBid':'198564775297290','FBfmt':'story','icon':'star_blu','title':"Palazzo Laviosa"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.685881,45.053971]},'properties':{'FBid':'203066411513793','FBfmt':'story','icon':'star_blu','title':"Palazzo Scotti Castelbosco 1"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.686054,45.053963]},'properties':{'FBid':'206782807808820','FBfmt':'story','icon':'star_blu','title':"Palazzo Scotti Castelbosco 2"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.690215,45.051649]},'properties':{'FBid':'204452564708511','FBfmt':'story','icon':'star_blu','title':"Palazzo Mulazzani"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689602,45.053210]},'properties':{'FBid':'187644393055995','FBfmt':'story','icon':'star_blu','title':"Palazzo Portapuglia"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694971,45.049713]},'properties':{'FBid':'176726677481100','FBfmt':'story','icon':'star_blu','title':"Palazzo Sanseverino Marazzani"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.690673,45.052523]},'properties':{'FBid':'201109275042840','FBfmt':'story','icon':'star_blu','title':"Palazzo Scotti di Podenzano"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692224,45.050614]},'properties':{'FBid':'225019722320425','FBfmt':'posts','icon':'star_blu','title':"Palazzo Scotti di Sarmato"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689540,45.051915]},'properties':{'FBid':'204995951320839','FBfmt':'story','icon':'star_blu','title':"Palazzo Scotti di Vigoleno"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.684561,45.054040]},'properties':{'FBid':'201414448345656','FBfmt':'story','icon':'star_blu','title':"Palazzo Somaglia"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689788,45.053085]},'properties':{'FBid':'200597751760659','FBfmt':'story','icon':'star_blu','title':"Palazzo Volpe Landi"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689355,45.053691]},'properties':{'FBid':'208771560943278','FBfmt':'story','icon':'star_grn','title':"Piazza Borgo Romana"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.701647,45.056893]},'properties':{'FBid':'190203802800054','FBfmt':'story','icon':'star_grn','title':"Porta Fodesta"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.706936,45.047962]},'properties':{'FBid':'187185319768569','FBfmt':'story','icon':'star_grn','title':"Porta San Lazzaro"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.648406,45.054899]},'properties':{'FBid':'168315548322213','FBfmt':'story','icon':'star_red','title':"Sant'Antonio a Trebbia"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694928,45.055782]},'properties':{'FBid':'178397123980722','FBfmt':'story','icon':'star_grn','title':"Scuderie di Marialuigia"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693184,45.052437]},'properties':{'FBid':'192906192529815','FBfmt':'story','icon':'star_grn','title':"Statua di Alessandro Farnese"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692781,45.052783]},'properties':{'FBid':'192906192529815','FBfmt':'story','icon':'star_grn','title':"Statua di Ranuccio Farnese"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693458,45.049697]},'properties':{'FBid':'225747255581005','FBfmt':'posts','icon':'star_blu','title':"Teatro Verdi"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689826,45.054021]},'properties':{'FBid':'210598397427261','FBfmt':'story','icon':'star_grn','title':"Tempio Romano-Monte di Pietà"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693690,45.052462]},'properties':{'FBid':'181885956965172','FBfmt':'story','icon':'star_blu','title':"Torre dell'Orologio"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689391,45.053635]},'properties':{'FBid':'208579667629134','FBfmt':'story','icon':'star_blu','title':"Torre Medievale"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.685645,45.054080]},'properties':{'FBid':'215613396925761','FBfmt':'story','icon':'star_blu','title':"Collegio Morigi-ex Scotti"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.699372,45.051103]},'properties':{'FBid':'230229075132823','FBfmt':'posts','icon':'star_blu','title':"Palazzo Costa"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.691455,45.049106]},'properties':{'FBid':'229897111832686','FBfmt':'posts','icon':'star_red','title':"ex Monastero Santa Franca"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694507,45.049429]},'properties':{'FBid':'229334478555616','FBfmt':'posts','icon':'star_red','title':"Basilica di Sant'Antonino"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694670,45.051054]},'properties':{'FBid':'229149751907422','FBfmt':'posts','icon':'star_grn','title':"Lapide Porta AENEA Romana"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.701969,45.047813]},'properties':{'FBid':'228758781946519','FBfmt':'posts','icon':'star_red','title':"Chiesa di Sant'Anna"}},
+          ]
         }
-      );
+      });
+
+      // Add a layer showing the places.
+      map.addLayer({
+        'id': 'places',
+        'type': 'symbol',
+        'source': 'places',
+        'layout': {
+            'icon-image': ['get','icon'],
+            'icon-allow-overlap': true
+        }
+      });
 
       // When a click event occurs on a feature in the places layer, open a popup at the
       // location of the feature, with description HTML from its properties.
@@ -232,6 +245,7 @@
           var coordinates = e.features[0].geometry.coordinates.slice();
           var title = e.features[0].properties.title;
           var FBid = e.features[0].properties.FBid;
+          var FBfmt = e.features[0].properties.FBfmt;
 
           // Ensure that if the map is zoomed out such that multiple
           // copies of the feature are visible, the popup appears
@@ -240,10 +254,13 @@
           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
         }
 
+        if (FBfmt === "posts") {var FBurl = 'https://www.facebook.com/mikilaviaggiatrice/posts/' + FBid}
+        else {var FBurl = 'https://www.facebook.com/story.php?story_fbid=' + FBid + '&id=112355057251596'}
+
         new mapboxgl.Popup({closeButton: false})
         .setLngLat(coordinates)
         //.setHTML(description+" - "+urlid)
-        .setHTML('<a href="https://m.facebook.com/mikilaviaggiatrice/posts/'+FBid+'" target="_blank">'+title+'</a>')
+        .setHTML('<a href="'+ FBurl + '" target="_blank">' + title + '</a>')
         .addTo(map);
       });
 

@@ -66,6 +66,7 @@
   <button id="HtmlButton4">Fortificazioni esterne</button>
   <button id="HtmlButton5">La Tagliata</button>
   <button id="HtmlButton6">Vista Satellitare</button>
+  <button id="HtmlButton8">Informazioni</button>
 </div>
 
 <div id="map"></div>
@@ -78,6 +79,7 @@
   var button5 = document.getElementById( 'HtmlButton5' );
   var button6 = document.getElementById( 'HtmlButton6' );
   var button7 = document.getElementById( 'HtmlButton7' );
+  var button8 = document.getElementById( 'HtmlButton8' );
   HideMaps();
 
 	mapboxgl.accessToken = 'pk.eyJ1Ijoicmljcm9jIiwiYSI6ImNpanZyajMxYTBhdmZ0dG01bmVsbG8ybzcifQ.RdmNKeWGLY_fqRmUrM9m4w';
@@ -356,6 +358,10 @@
       }
     };
 
+    button8.addEventListener( 'click', function() {
+      window.open("https://sites.google.com/site/riccardorocca62/drone-projects/piacenza-walkmap");
+    });
+
     function InactiveButtons() {
       map.setLayoutProperty('Piacenza Mura Archistorica', 'visibility', 'none');
       button1.className = 'inactive';
@@ -378,6 +384,7 @@
       button5.style.display = "block";
       button6.style.display = "block";
       button7.style.display = "block";
+      button8.style.display = "block";
       return;
     }
 
@@ -390,6 +397,7 @@
       button5.style.display = "none";
       button6.style.display = "none";
       button7.style.display = "none";
+      button8.style.display = "none";
       return;
     }
 

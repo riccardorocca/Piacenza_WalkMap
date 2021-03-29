@@ -51,6 +51,9 @@
     button.active:hover {
         background: #3074a4;
     }
+
+    #button7 {style="background: url(myimage.png)"}
+
   </style>
 
 </head>
@@ -64,7 +67,8 @@
 </style>
 
 <div class="menu">
-  <button id="HtmlButton0">Mappe</button>
+  <button id="HtmlButton0">MAPPE</button>
+  <button id="HtmlButton7"><img src="https://riccardorocca.github.io/Piacenza_WalkMap/star_red.png"></button>
   <button id="HtmlButton3">Chiese Antiche</button>
   <button id="HtmlButton2">Canali</button>
   <button id="HtmlButton1">Cinte di Mura</button>
@@ -82,6 +86,7 @@
   var button4 = document.getElementById( 'HtmlButton4' );
   var button5 = document.getElementById( 'HtmlButton5' );
   var button6 = document.getElementById( 'HtmlButton6' );
+  var button7 = document.getElementById( 'HtmlButton7' );
   HideMaps();
 
 	mapboxgl.accessToken = 'pk.eyJ1Ijoicmljcm9jIiwiYSI6ImNpanZyajMxYTBhdmZ0dG01bmVsbG8ybzcifQ.RdmNKeWGLY_fqRmUrM9m4w';
@@ -284,6 +289,17 @@
       }
     };
 
+    button7.className = 'active';
+    button7.onclick = function () {
+      if (button7.className === 'active') {
+        map.setLayoutProperty('places', 'visibility', 'none');
+        button7.className = 'inactive';
+      } else {
+        map.setLayoutProperty('places', 'visibility', 'visible');
+        button7.className = 'active';
+      }
+    };
+
     button1.onclick = function () {
       if (button1.className === 'active') {
         map.setLayoutProperty('Piacenza Mura Archistorica', 'visibility', 'none');
@@ -370,6 +386,7 @@
       button4.style.display = "block";
       button5.style.display = "block";
       button6.style.display = "block";
+      button7.style.display = "block";
       return;
     }
 
@@ -381,6 +398,7 @@
       button4.style.display = "none";
       button5.style.display = "none";
       button6.style.display = "none";
+      button7.style.display = "none";
       return;
     }
 

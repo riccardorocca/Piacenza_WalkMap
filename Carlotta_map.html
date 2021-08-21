@@ -194,7 +194,7 @@
         new mapboxgl.Popup({closeButton: false})
         .setLngLat(coordinates)
         //.setHTML(description+" - "+urlid)
-        .setHTML(title)
+        .setHTML('<p style="text-align:center">' + title + '</p>')
         .addTo(map);
       });
 

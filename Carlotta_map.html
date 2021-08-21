@@ -58,12 +58,31 @@
 </style>
 
 <div class="menu">
+  <button id="HtmlButton0">MAPPE</button>
+  <button id="HtmlButton8">Informazioni</button>
+  <button id="HtmlButton7"><img src="https://riccardorocca.github.io/Piacenza_WalkMap/legend.png"></button>
+  <button id="HtmlButton3">Chiese Antiche</button>
+  <button id="HtmlButton2">Canali</button>
+  <button id="HtmlButton1">Mura Archistorica</button>
+  <button id="HtmlButton9">Mura IlPiacenza</button>
+  <button id="HtmlButton4">Fortificazioni esterne</button>
+  <button id="HtmlButton5">La Tagliata</button>
   <button id="HtmlButton6">Vista Satellitare</button>
 </div>
 
 <div id="map"></div>
 <script>
+  var button0 = document.getElementById( 'HtmlButton0' );
+  var button1 = document.getElementById( 'HtmlButton1' );
+  var button2 = document.getElementById( 'HtmlButton2' );
+  var button3 = document.getElementById( 'HtmlButton3' );
+  var button4 = document.getElementById( 'HtmlButton4' );
+  var button5 = document.getElementById( 'HtmlButton5' );
   var button6 = document.getElementById( 'HtmlButton6' );
+  var button7 = document.getElementById( 'HtmlButton7' );
+  var button8 = document.getElementById( 'HtmlButton8' );
+  var button9 = document.getElementById( 'HtmlButton9' );
+  HideMaps();
 
 	mapboxgl.accessToken = 'pk.eyJ1Ijoicmljcm9jIiwiYSI6ImNpanZyajMxYTBhdmZ0dG01bmVsbG8ybzcifQ.RdmNKeWGLY_fqRmUrM9m4w';
     var map = new mapboxgl.Map({
@@ -125,7 +144,6 @@
         'data': {
           'type': 'FeatureCollection',
           'features': [
-
             {'type':'Feature','geometry':{'type':'Point','coordinates':[9.704345, 45.053492]},'properties':{'icon':'star_red','title':"Riccardo home"}},
             {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693596, 45.054676]},'properties':{'icon':'star_red','title':"B&B Palazzo Malaspina"}},
             {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689276, 45.057991]},'properties':{'icon':'star_red','title':"La Pireina Restaurant"}},
@@ -141,7 +159,6 @@
             {'type':'Feature','geometry':{'type':'Point','coordinates':[9.690653, 45.050243]},'properties':{'icon':'star_blu','title':"pedestrian alley"}},
             {'type':'Feature','geometry':{'type':'Point','coordinates':[9.701552, 45.050408]},'properties':{'icon':'star_blu','title':"Saint Savino church 1000-1107"}},
             {'type':'Feature','geometry':{'type':'Point','coordinates':[9.687854, 45.051709]},'properties':{'icon':'star_blu','title':"Saint John church 1200..."}},
-
           ]
         }
       });
@@ -162,6 +179,8 @@
       map.on('click', 'places', function (e) {
           var coordinates = e.features[0].geometry.coordinates.slice();
           var title = e.features[0].properties.title;
+          var FBid = e.features[0].properties.FBid;
+          var FBfmt = e.features[0].properties.FBfmt;
 
           // Ensure that if the map is zoomed out such that multiple
           // copies of the feature are visible, the popup appears
@@ -170,10 +189,13 @@
           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
         }
 
+        if (FBfmt === "posts") {var FBurl = 'https://www.facebook.com/mikilaviaggiatrice/posts/' + FBid}
+        else {var FBurl = 'https://www.facebook.com/story.php?story_fbid=' + FBid + '&id=112355057251596'}
+
         new mapboxgl.Popup({closeButton: false})
         .setLngLat(coordinates)
         //.setHTML(description+" - "+urlid)
-        .setHTML(title)
+        .setHTML('<a href="'+ FBurl + '" target="_blank">' + title + '</a>')
         .addTo(map);
       });
 
@@ -189,6 +211,91 @@
 
     });
 
+    button0.onclick = function () {
+      if (button0.className === 'active') {
+        HideMaps();
+      } else {
+        ShowMaps();
+      }
+    };
+
+    button7.className = 'active';
+    button7.onclick = function () {
+      if (button7.className === 'active') {
+        map.setLayoutProperty('places', 'visibility', 'none');
+        button7.className = 'inactive';
+      } else {
+        map.setLayoutProperty('places', 'visibility', 'visible');
+        button7.className = 'active';
+      }
+    };
+
+    button1.onclick = function () {
+      if (button1.className === 'active') {
+        map.setLayoutProperty('Piacenza Mura Archistorica', 'visibility', 'none');
+        button1.className = 'inactive';
+      } else {
+        InactiveButtons();
+        map.setLayoutProperty('Piacenza Mura Archistorica', 'visibility', 'visible');
+        button1.className = 'active';
+      }
+    };
+
+    button2.onclick = function () {
+      if (button2.className === 'active') {
+        map.setLayoutProperty('Piacenza Canali 1862', 'visibility', 'none');
+        button2.className = 'inactive';
+      } else {
+        InactiveButtons();
+        map.setLayoutProperty('Piacenza Canali 1862', 'visibility', 'visible');
+        button2.className = 'active';
+      }
+    };
+
+    button3.onclick = function () {
+      if (button3.className === 'active') {
+        map.setLayoutProperty('Piacenza Chiese Scomparse', 'visibility', 'none');
+        button3.className = 'inactive';
+      } else {
+        InactiveButtons();
+        map.setLayoutProperty('Piacenza Chiese Scomparse', 'visibility', 'visible');
+        button3.className = 'active';
+      }
+    };
+
+    button4.onclick = function () {
+      if (button4.className === 'active') {
+        map.setLayoutProperty('Piacenza Fortificazioni', 'visibility', 'none');
+        button4.className = 'inactive';
+      } else {
+        InactiveButtons();
+        map.setLayoutProperty('Piacenza Fortificazioni', 'visibility', 'visible');
+        button4.className = 'active';
+      }
+    };
+
+    button5.onclick = function () {
+      if (button5.className === 'active') {
+        map.setLayoutProperty('Piacenza La Tagliata', 'visibility', 'none');
+        button5.className = 'inactive';
+      } else {
+        InactiveButtons();
+        map.setLayoutProperty('Piacenza La Tagliata', 'visibility', 'visible');
+        button5.className = 'active';
+      }
+    };
+
+    button9.onclick = function () {
+      if (button9.className === 'active') {
+        map.setLayoutProperty('Piacenza Mura IlPiacenza', 'visibility', 'none');
+        button9.className = 'inactive';
+      } else {
+        InactiveButtons();
+        map.setLayoutProperty('Piacenza Mura IlPiacenza', 'visibility', 'visible');
+        button9.className = 'active';
+      }
+    };
+
     button6.onclick = function () {
       if (button6.className === 'active') {
         map.setLayoutProperty('Satellitare Google', 'visibility', 'none');
@@ -198,6 +305,53 @@
         button6.className = 'active';
       }
     };
+
+    button8.addEventListener( 'click', function() {
+      window.open("https://sites.google.com/site/riccardorocca62/drone-projects/piacenza-walkmap");
+    });
+
+    function InactiveButtons() {
+      map.setLayoutProperty('Piacenza Mura Archistorica', 'visibility', 'none');
+      button1.className = 'inactive';
+      map.setLayoutProperty('Piacenza Canali 1862', 'visibility', 'none');
+      button2.className = 'inactive';
+      map.setLayoutProperty('Piacenza Chiese Scomparse', 'visibility', 'none');
+      button3.className = 'inactive';
+      map.setLayoutProperty('Piacenza Fortificazioni', 'visibility', 'none');
+      button4.className = 'inactive';
+      map.setLayoutProperty('Piacenza La Tagliata', 'visibility', 'none');
+      button5.className = 'inactive';
+      map.setLayoutProperty('Piacenza Mura IlPiacenza', 'visibility', 'none');
+      button9.className = 'inactive';
+    }
+
+    function ShowMaps() {
+      button0.className = 'active';
+      button1.style.display = "block";
+      button2.style.display = "block";
+      button3.style.display = "block";
+      button4.style.display = "block";
+      button5.style.display = "block";
+      button6.style.display = "block";
+      button7.style.display = "block";
+      button8.style.display = "block";
+      button9.style.display = "block";
+      return;
+    }
+
+    function HideMaps() {
+      button0.className = 'inactive';
+      button1.style.display = "none";
+      button2.style.display = "none";
+      button3.style.display = "none";
+      button4.style.display = "none";
+      button5.style.display = "none";
+      button6.style.display = "none";
+      button7.style.display = "none";
+      button8.style.display = "none";
+      button9.style.display = "none";
+      return;
+    }
 
   </script>
 

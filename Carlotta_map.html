@@ -189,13 +189,10 @@
           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
         }
 
-        if (FBfmt === "posts") {var FBurl = 'https://www.facebook.com/mikilaviaggiatrice/posts/' + FBid}
-        else {var FBurl = 'https://www.facebook.com/story.php?story_fbid=' + FBid + '&id=112355057251596'}
-
         new mapboxgl.Popup({closeButton: false})
         .setLngLat(coordinates)
         //.setHTML(description+" - "+urlid)
-        .setHTML('<a href="'+ FBurl + '" target="_blank">' + title + '</a>')
+        .setHTML(title)
         .addTo(map);
       });
 

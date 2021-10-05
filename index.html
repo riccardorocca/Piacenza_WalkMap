@@ -126,6 +126,8 @@
       );
       map.setLayoutProperty('Satellitare Google', 'visibility', 'none');
 
+
+
       map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/star_red.png', function (error, image) {
         if (error) throw error;
         map.addImage('star_red', image);
@@ -146,6 +148,8 @@
         map.addImage('circle_yellow', image);
       });
 
+
+
       map.addSource('chiese', {
         'type': 'geojson',
         'data': {
@@ -165,6 +169,7 @@
             'icon-allow-overlap': true
         }
       });
+      map.setLayoutProperty('chiese', 'visibility', 'none');
 
       map.on('click', 'chiese', function (e) {
           var coordinates = e.features[0].geometry.coordinates.slice();
@@ -193,6 +198,7 @@
       map.on('mouseleave', 'chiese', function () {
         map.getCanvas().style.cursor = '';
       });
+
 
 
       map.addSource('places', {
@@ -366,6 +372,21 @@
       } else {
         map.setLayoutProperty('places', 'visibility', 'visible');
         button7.className = 'active';
+        map.setLayoutProperty('chiese', 'visibility', 'none');
+        button10.className = 'inactive';
+      }
+    };
+
+    //button10.className = 'inactive';
+    button10.onclick = function () {
+      if (button10.className === 'active') {
+        map.setLayoutProperty('chiese', 'visibility', 'none');
+        button10.className = 'inactive';
+      } else {
+        map.setLayoutProperty('chiese', 'visibility', 'visible');
+        button10.className = 'active';
+        map.setLayoutProperty('places', 'visibility', 'none');
+        button7.className = 'inactive';
       }
     };
 

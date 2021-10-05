@@ -164,7 +164,7 @@
         }
       });
 
-      map.on('mousemove', 'chiese', function (e) {
+      map.on('click', 'chiese', function (e) {
           var coordinates = e.features[0].geometry.coordinates.slice();
           var title = e.features[0].properties.title;
           var status = e.features[0].properties.status;

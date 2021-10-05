@@ -139,6 +139,60 @@
         map.addImage('star_grn', image);
       });
 
+      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/circle_yellow.png', function (error, image) {
+        if (error) throw error;
+        map.addImage('circle_yellow', image);
+      });
+
+      map.addSource('chiese', {
+        'type': 'geojson',
+        'data': {
+          'type': 'FeatureCollection',
+          'features': [
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.680039647,45.05648052]},'properties':{'icon':'circle_yellow','status':'aperta','title':"Santa Maria di Campagna"}},
+          ]
+        }
+      });
+
+      map.addLayer({
+        'id': 'chiese',
+        'type': 'symbol',
+        'source': 'chiese',
+        'layout': {
+            'icon-image': ['get','icon'],
+            'icon-allow-overlap': true
+        }
+      });
+
+      map.on('mousemove', 'chiese', function (e) {
+          var coordinates = e.features[0].geometry.coordinates.slice();
+          var title = e.features[0].properties.title;
+          var status = e.features[0].properties.status;
+
+          // Ensure that if the map is zoomed out such that multiple
+          // copies of the feature are visible, the popup appears
+          // over the copy being pointed to.
+          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        new mapboxgl.Popup({closeButton: false})
+        .setLngLat(coordinates)
+        .setHTML(title+'<br>'+status)
+        .addTo(map);
+      });
+
+      // Change the cursor to a pointer when the mouse is over the places layer.
+      map.on('mouseenter', 'chiese', function () {
+        map.getCanvas().style.cursor = 'pointer';
+      });
+
+      // Change it back to a pointer when it leaves.
+      map.on('mouseleave', 'chiese', function () {
+        map.getCanvas().style.cursor = '';
+      });
+
+
       map.addSource('places', {
         'type': 'geojson',
         'data': {

@@ -61,6 +61,7 @@
   <button id="HtmlButton0">MAPPE</button>
   <button id="HtmlButton8">Informazioni</button>
   <button id="HtmlButton7"><img src="https://riccardorocca.github.io/Piacenza_WalkMap/legend.png"></button>
+  <button id="HtmlButton10"><img src="https://riccardorocca.github.io/Piacenza_WalkMap/legend4.png"></button>
   <button id="HtmlButton3">Chiese Antiche</button>
   <button id="HtmlButton2">Canali</button>
   <button id="HtmlButton1">Mura Archistorica</button>
@@ -82,6 +83,7 @@
   var button7 = document.getElementById( 'HtmlButton7' );
   var button8 = document.getElementById( 'HtmlButton8' );
   var button9 = document.getElementById( 'HtmlButton9' );
+  var button10 = document.getElementById( 'HtmlButton10' );
   HideMaps();
 
 	mapboxgl.accessToken = 'pk.eyJ1Ijoicmljcm9jIiwiYSI6ImNpanZyajMxYTBhdmZ0dG01bmVsbG8ybzcifQ.RdmNKeWGLY_fqRmUrM9m4w';
@@ -473,6 +475,7 @@
       button7.style.display = "block";
       button8.style.display = "block";
       button9.style.display = "block";
+      button10.style.display = "block";
       return;
     }
 
@@ -487,6 +490,7 @@
       button7.style.display = "none";
       button8.style.display = "none";
       button9.style.display = "none";
+      button10.style.display = "none";
       return;
     }
 

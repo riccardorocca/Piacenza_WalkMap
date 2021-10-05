@@ -143,9 +143,19 @@
         map.addImage('star_grn', image);
       });
 
-      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/circle_yellow.png', function (error, image) {
+      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/circle_green.png', function (error, image) {
         if (error) throw error;
-        map.addImage('circle_yellow', image);
+        map.addImage('circle_grn', image);
+      });
+
+      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/circle_blue.png', function (error, image) {
+        if (error) throw error;
+        map.addImage('circle_blu', image);
+      });
+
+      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/circle_red.png', function (error, image) {
+        if (error) throw error;
+        map.addImage('circle_red', image);
       });
 
 
@@ -155,7 +165,9 @@
         'data': {
           'type': 'FeatureCollection',
           'features': [
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.680039647,45.05648052]},'properties':{'icon':'circle_yellow','status':'aperta','title':"Santa Maria di Campagna"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.680039647,45.05648052]},'properties':{'icon':'circle_grn','status':'aperta',   'title':"Santa Maria di Campagna"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.680678577,45.05635358]},'properties':{'icon':'circle_red','status':'scomparsa','title':"Santa Vittoria"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.686282524,45.05665918]},'properties':{'icon':'circle_blu','status':'chiusa',   'title':"San Bartolomeo Nuovo"}},
           ]
         }
       });

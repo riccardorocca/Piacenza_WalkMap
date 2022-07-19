@@ -68,6 +68,7 @@
   <button id="HtmlButton2">Canali</button>
   <button id="HtmlButton1">Mura Archistorica</button>
   <button id="HtmlButton9">Mura IlPiacenza</button>
+  <button id="HtmlButton11">Mura 1540</button>
   <button id="HtmlButton4">Fortificazioni esterne</button>
   <button id="HtmlButton5">La Tagliata</button>
   <button id="HtmlButton6">Vista Satellitare</button>
@@ -86,6 +87,7 @@
   var button8 = document.getElementById( 'HtmlButton8' );
   var button9 = document.getElementById( 'HtmlButton9' );
   var button10 = document.getElementById( 'HtmlButton10' );
+  var button11 = document.getElementById( 'HtmlButton11' );
   HideMaps();
 
 	mapboxgl.accessToken = 'pk.eyJ1Ijoicmljcm9jIiwiYSI6ImNpanZyajMxYTBhdmZ0dG01bmVsbG8ybzcifQ.RdmNKeWGLY_fqRmUrM9m4w';
@@ -580,6 +582,16 @@
       }
     };
 
+    button11.onclick = function () {
+      if (button11.className === 'active') {
+        map.setLayoutProperty('Piacenza Mura 1540', 'visibility', 'none');
+        button11.className = 'inactive';
+      } else {
+        map.setLayoutProperty('Piacenza Mura 1540', 'visibility', 'visible');
+        button11.className = 'active';
+      }
+    };
+
     button8.addEventListener( 'click', function() {
       window.open("https://sites.google.com/view/riccardorocca/piacenza-walkmap");
     });
@@ -597,6 +609,8 @@
       button5.className = 'inactive';
       map.setLayoutProperty('Piacenza Mura IlPiacenza', 'visibility', 'none');
       button9.className = 'inactive';
+      map.setLayoutProperty('Piacenza Mura 1540', 'visibility', 'none');
+      button11.className = 'inactive';
     }
 
     function ShowMaps() {
@@ -611,6 +625,7 @@
       button8.style.display = "block";
       button9.style.display = "block";
       button10.style.display = "block";
+      button11.style.display = "block";
       return;
     }
 
@@ -626,6 +641,7 @@
       button8.style.display = "none";
       button9.style.display = "none";
       button10.style.display = "none";
+      button11.style.display = "none";
       return;
     }
 

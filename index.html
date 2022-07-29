@@ -67,7 +67,6 @@
   <button id="HtmlButton3">Chiese Antiche</button>
   <button id="HtmlButton2">Canali</button>
   <button id="HtmlButton1">Mura Archistorica</button>
-  <button id="HtmlButton9">Mura IlPiacenza</button>
   <button id="HtmlButton11">Mura 1540</button>
   <button id="HtmlButton4">Fortificazioni esterne</button>
   <button id="HtmlButton5">La Tagliata</button>
@@ -85,7 +84,6 @@
   var button6 = document.getElementById( 'HtmlButton6' );
   var button7 = document.getElementById( 'HtmlButton7' );
   var button8 = document.getElementById( 'HtmlButton8' );
-  var button9 = document.getElementById( 'HtmlButton9' );
   var button10 = document.getElementById( 'HtmlButton10' );
   var button11 = document.getElementById( 'HtmlButton11' );
   HideMaps();
@@ -93,7 +91,7 @@
 	mapboxgl.accessToken = 'pk.eyJ1Ijoicmljcm9jIiwiYSI6ImNpanZyajMxYTBhdmZ0dG01bmVsbG8ybzcifQ.RdmNKeWGLY_fqRmUrM9m4w';
     var map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/ricroc/cklv6gyop2n2f17s5hsaxd2eg',
+        style: 'mapbox://styles/ricroc/cl66pcagv001j15oxl401md1l',
         center: [9.692497,45.051890],
         zoom: 14
     });
@@ -129,8 +127,6 @@
         'Piacenza Canali 1862'
       );
       map.setLayoutProperty('Satellitare Google', 'visibility', 'none');
-
-
 
       map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/star_red.png', function (error, image) {
         if (error) throw error;
@@ -561,17 +557,6 @@
       }
     };
 
-    button9.onclick = function () {
-      if (button9.className === 'active') {
-        map.setLayoutProperty('Piacenza Mura IlPiacenza', 'visibility', 'none');
-        button9.className = 'inactive';
-      } else {
-        InactiveButtons();
-        map.setLayoutProperty('Piacenza Mura IlPiacenza', 'visibility', 'visible');
-        button9.className = 'active';
-      }
-    };
-
     button6.onclick = function () {
       if (button6.className === 'active') {
         map.setLayoutProperty('Satellitare Google', 'visibility', 'none');
@@ -607,8 +592,6 @@
       button4.className = 'inactive';
       map.setLayoutProperty('Piacenza La Tagliata', 'visibility', 'none');
       button5.className = 'inactive';
-      map.setLayoutProperty('Piacenza Mura IlPiacenza', 'visibility', 'none');
-      button9.className = 'inactive';
       map.setLayoutProperty('Piacenza Mura 1540', 'visibility', 'none');
       button11.className = 'inactive';
     }
@@ -623,7 +606,6 @@
       button6.style.display = "block";
       button7.style.display = "block";
       button8.style.display = "block";
-      button9.style.display = "block";
       button10.style.display = "block";
       button11.style.display = "block";
       return;
@@ -639,7 +621,6 @@
       button6.style.display = "none";
       button7.style.display = "none";
       button8.style.display = "none";
-      button9.style.display = "none";
       button10.style.display = "none";
       button11.style.display = "none";
       return;

@@ -60,7 +60,7 @@
 <div class="menu">
   <button id="HtmlButton0">MAPPE</button>
   <button id="HtmlButton8">Informazioni</button>
-  <button id="HtmlButton7"><img src="https://riccardorocca.github.io/Piacenza_WalkMap/legend3.png"></button>
+  <button id="HtmlButton7">Monumenti</button>
   <button id="HtmlButton3">Chiese Antiche</button>
   <button id="HtmlButton2">Canali</button>
   <button id="HtmlButton1">Mura Archistorica</button>
@@ -87,9 +87,9 @@
 	mapboxgl.accessToken = 'pk.eyJ1Ijoicmljcm9jIiwiYSI6ImNpanZyajMxYTBhdmZ0dG01bmVsbG8ybzcifQ.RdmNKeWGLY_fqRmUrM9m4w';
     var map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/ricroc/cklv6gyop2n2f17s5hsaxd2eg',
+        style: 'mapbox://styles/ricroc/cl66pcagv001j15oxl401md1l',
         center: [9.692497,45.051890],
-        zoom: 14
+        zoom: 14.5
     });
 
     //map.setLayoutProperty('Piacenza Mura Archistorica', 'visibility', 'none');
@@ -144,25 +144,22 @@
         'data': {
           'type': 'FeatureCollection',
           'features': [
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.704345, 45.053492]},'properties':{'icon':'star_red','url':'','title':"Riccardo home"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693596, 45.054676]},'properties':{'icon':'star_red','url':'','title':"B&B Palazzo Malaspina"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.689276, 45.057991]},'properties':{'icon':'star_red','url':'','title':"La Pireina Restaurant"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.688288, 45.058928]},'properties':{'icon':'star_grn','url':'https://sorgentedelvinolive.org/edizioni-precedenti/il-bastione-di-porta-borghetto/','title':"Austrian fort<br>1850 AD"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.687048, 45.058988]},'properties':{'icon':'star_grn','url':'','title':"Farnese city wall<br>1525-45 AD"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.696439, 45.055395]},'properties':{'icon':'star_blu','url':'https://en.wikipedia.org/wiki/Palazzo_Farnese,_Piacenza','title':"Farnese Palace<br>1558-1602 AD"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.695805, 45.055831]},'properties':{'icon':'star_blu','url':'https://en.wikipedia.org/wiki/Palazzo_Farnese,_Piacenza','title':"Visconti Castle<br>1352 AD"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693062, 45.052678]},'properties':{'icon':'star_blu','url':'https://it.wikipedia.org/wiki/Cavalli_del_Mochi','title':"Main square<br>Ranuccio & Alessandro Farnese<br>equestrian monuments<br>1600-20 AD"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692688, 45.052504]},'properties':{'icon':'star_blu','url':'https://de.wikipedia.org/wiki/Palazzo_Comunale_(Piacenza)','title':"Palazzo Gotico<br>(City Hall)<br>1281 AD"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693920, 45.052168]},'properties':{'icon':'star_blu','url':'https://en.wikipedia.org/wiki/San_Francesco,_Piacenza','title':"Saint Francis church<br>1278-1363 AD"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.697296, 45.050322]},'properties':{'icon':'star_blu','url':'https://de.wikipedia.org/wiki/Dom_von_Piacenza','title':"Cathedral<br>1122-50 AD"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694528, 45.049395]},'properties':{'icon':'star_blu','url':'https://de.wikipedia.org/wiki/Sant%E2%80%99Antonino_(Piacenza)','title':"Saint Antonino church<br>1122-50 AD"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.690653, 45.050243]},'properties':{'icon':'star_grn','url':'','title':"Corso Vittorio Emanuele<br>(pedestrian avenue)"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.701552, 45.050408]},'properties':{'icon':'star_grn','url':'https://en.wikipedia.org/wiki/San_Savino,_Piacenza','title':"Saint Savino church<br>1000-1107 AD"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.687854, 45.051709]},'properties':{'icon':'star_grn','url':'https://it.wikipedia.org/wiki/Basilica_di_San_Giovanni_in_Canale','title':"Saint John church<br>XIII sec"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.690568, 45.056600]},'properties':{'icon':'star_grn','url':'','title':"Roman city wall<br>III-XII sec"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.686679, 45.047356]},'properties':{'icon':'star_grn','url':'','title':"Farnese city wall<br>(green walk)<br>1525-45 AD"}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692737, 45.057204]},'properties':{'icon':'star_blu','url':'https://de.wikipedia.org/wiki/San_Sisto_(Piacenza)','title':'Saint Sisto Church<br>1514 AD<br>Rafael copy of "Madonna Sistina"<br>(now in Dresden)'}},
-            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.691951, 45.048962]},'properties':{'icon':'star_blu','url':'https://en.wikipedia.org/wiki/Galleria_d%27arte_moderna_Ricci_Oddi','title':'Modern art gallery "Ricci Oddi"<br>Klimt painting "Portrait of a lady"'}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.688288, 45.058928]},'properties':{'icon':'star_red','url':'https://sorgentedelvinolive.org/edizioni-precedenti/il-bastione-di-porta-borghetto/','title':"Forte Austriaco<br>1850 AD"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.687048, 45.058988]},'properties':{'icon':'star_red','url':'','title':"Mura Farnesiane<br>1525-45 AD"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.696439, 45.055395]},'properties':{'icon':'star_red','url':'https://en.wikipedia.org/wiki/Palazzo_Farnese,_Piacenza','title':"Palazzo Farnese<br>1558-1602 AD"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.695805, 45.055831]},'properties':{'icon':'star_red','url':'https://en.wikipedia.org/wiki/Palazzo_Farnese,_Piacenza','title':"Castello Visconteo<br>1352 AD"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693062, 45.052678]},'properties':{'icon':'star_red','url':'https://it.wikipedia.org/wiki/Cavalli_del_Mochi','title':"Piazza Cavalli<br>monumenti equestri di<br>Ranuccio & Alessandro Farnese<br>1600-20 AD"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692688, 45.052504]},'properties':{'icon':'star_red','url':'https://de.wikipedia.org/wiki/Palazzo_Comunale_(Piacenza)','title':"Palazzo Gotico<br>(Municipio)<br>1281 AD"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.693920, 45.052168]},'properties':{'icon':'star_red','url':'https://en.wikipedia.org/wiki/San_Francesco,_Piacenza','title':"Chiesa di San Francesco<br>1278-1363 AD"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.697296, 45.050322]},'properties':{'icon':'star_red','url':'https://de.wikipedia.org/wiki/Dom_von_Piacenza','title':"Cattedrale<br>1122-50 AD"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.694528, 45.049395]},'properties':{'icon':'star_red','url':'https://de.wikipedia.org/wiki/Sant%E2%80%99Antonino_(Piacenza)','title':"Chiesa di Sant'Antonino<br>1122-50 AD"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.690653, 45.050243]},'properties':{'icon':'star_red','url':'','title':"Corso Vittorio Emanuele<br>(zona pedonale)"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.701552, 45.050408]},'properties':{'icon':'star_red','url':'https://en.wikipedia.org/wiki/San_Savino,_Piacenza','title':"Chiesa di San Savino<br>1000-1107 AD"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.687854, 45.051709]},'properties':{'icon':'star_red','url':'https://it.wikipedia.org/wiki/Basilica_di_San_Giovanni_in_Canale','title':"Chiesa di San Giovanni<br>XIII sec"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.690568, 45.056600]},'properties':{'icon':'star_red','url':'','title':"Mura Romane<br>III-XII sec"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.686679, 45.047356]},'properties':{'icon':'star_red','url':'','title':"Mura Farnesiane<br>(pubblico passeggio)<br>1525-45 AD"}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.692737, 45.057204]},'properties':{'icon':'star_red','url':'https://de.wikipedia.org/wiki/San_Sisto_(Piacenza)','title':'Chiesa di San Sisto<br>1514 AD<br>Copia della "Madonna Sistina"<br>di Raffaello (ora a Dresda)'}},
+            {'type':'Feature','geometry':{'type':'Point','coordinates':[9.691951, 45.048962]},'properties':{'icon':'star_red','url':'https://en.wikipedia.org/wiki/Galleria_d%27arte_moderna_Ricci_Oddi','title':"Galleria d'arte moderna 'Ricci Oddi'"}},
           ]
         }
       });

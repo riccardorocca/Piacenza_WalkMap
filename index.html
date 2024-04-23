@@ -7,8 +7,8 @@
   <meta name="apple-mobile-web-app-title" content="PC WalkMap">
   <link rel="apple-touch-icon" href="https://riccardorocca.github.io/Piacenza_WalkMap/icon.png"/>
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  <link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet">
-  <script src="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
 
   <style id="compiled-css" type="text/css">
     body { margin: 0; padding: 0; }
@@ -64,12 +64,11 @@
   <button id="HtmlButton8">Informazioni</button>
   <button id="HtmlButton7"><img src="https://riccardorocca.github.io/Piacenza_WalkMap/legend.png"></button>
   <button id="HtmlButton10"><img src="https://riccardorocca.github.io/Piacenza_WalkMap/legend4.png"></button>
-  <button id="HtmlButton3">Chiese Antiche</button>
-  <button id="HtmlButton2">Canali</button>
   <button id="HtmlButton1">Mura Archistorica</button>
+  <button id="HtmlButton4">Mura e Fortificazioni</button>
   <button id="HtmlButton11">Mura 1540</button>
-  <button id="HtmlButton4">Fortificazioni esterne</button>
-  <button id="HtmlButton5">La Tagliata</button>
+  <button id="HtmlButton5">La Tagliata 1587</button>
+  <button id="HtmlButton2">Canali 1862</button>
   <button id="HtmlButton6">Vista Satellitare</button>
 </div>
 
@@ -78,7 +77,6 @@
   var button0 = document.getElementById( 'HtmlButton0' );
   var button1 = document.getElementById( 'HtmlButton1' );
   var button2 = document.getElementById( 'HtmlButton2' );
-  var button3 = document.getElementById( 'HtmlButton3' );
   var button4 = document.getElementById( 'HtmlButton4' );
   var button5 = document.getElementById( 'HtmlButton5' );
   var button6 = document.getElementById( 'HtmlButton6' );
@@ -95,9 +93,6 @@
         center: [9.692497,45.051890],
         zoom: 14
     });
-
-    //map.setLayoutProperty('Piacenza Mura Archistorica', 'visibility', 'none');
-    //map.setLayoutProperty('Piacenza Canali 1862', 'visibility', 'none');
 
     // Add geolocate control to the map.
     map.addControl(
@@ -128,37 +123,12 @@
       );
       map.setLayoutProperty('Satellitare Google', 'visibility', 'none');
 
-      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/star_red.png', function (error, image) {
-        if (error) throw error;
-        map.addImage('star_red', image);
-      });
-
-      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/star_blue.png', function (error, image) {
-        if (error) throw error;
-        map.addImage('star_blu', image);
-      });
-
-      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/star_green.png', function (error, image) {
-        if (error) throw error;
-        map.addImage('star_grn', image);
-      });
-
-      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/circle_green.png', function (error, image) {
-        if (error) throw error;
-        map.addImage('circle_grn', image);
-      });
-
-      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/circle_blue.png', function (error, image) {
-        if (error) throw error;
-        map.addImage('circle_blu', image);
-      });
-
-      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/circle_red.png', function (error, image) {
-        if (error) throw error;
-        map.addImage('circle_red', image);
-      });
-
-
+      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/star_red.png', function (error, image) {if (error) throw error; map.addImage('star_red', image)});
+      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/star_blue.png', function (error, image) {if (error) throw error; map.addImage('star_blu', image)});
+      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/star_green.png', function (error, image) {if (error) throw error; map.addImage('star_grn', image)});
+      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/circle_green.png', function (error, image) {if (error) throw error; map.addImage('circle_grn', image)});
+      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/circle_blue.png', function (error, image) {if (error) throw error; map.addImage('circle_blu', image)});
+      map.loadImage('https://riccardorocca.github.io/Piacenza_WalkMap/circle_red.png', function (error, image) {if (error) throw error; map.addImage('circle_red', image)});
 
       map.addSource('chiese', {
         'type': 'geojson',
@@ -282,7 +252,6 @@
             'icon-allow-overlap': true
         }
       });
-      map.setLayoutProperty('chiese', 'visibility', 'none');
 
       map.on('click', 'chiese', function (e) {
           var coordinates = e.features[0].geometry.coordinates.slice();
@@ -430,6 +399,7 @@
             'icon-allow-overlap': true
         }
       });
+      map.setLayoutProperty('places', 'visibility', 'none');
 
       // When a click event occurs on a feature in the places layer, open a popup at the
       // location of the feature, with description HTML from its properties.
@@ -476,7 +446,7 @@
       }
     };
 
-    button7.className = 'active';
+    button7.className = 'inactive';
     button7.onclick = function () {
       if (button7.className === 'active') {
         map.setLayoutProperty('places', 'visibility', 'none');
@@ -489,7 +459,7 @@
       }
     };
 
-    //button10.className = 'inactive';
+    button10.className = 'active';
     button10.onclick = function () {
       if (button10.className === 'active') {
         map.setLayoutProperty('chiese', 'visibility', 'none');
@@ -513,6 +483,8 @@
       }
     };
 
+    //map.setLayoutProperty('Piacenza Canali 1862', 'visibility', 'visible');
+    button2.className = 'active';
     button2.onclick = function () {
       if (button2.className === 'active') {
         map.setLayoutProperty('Piacenza Canali 1862', 'visibility', 'none');
@@ -521,17 +493,6 @@
         InactiveButtons();
         map.setLayoutProperty('Piacenza Canali 1862', 'visibility', 'visible');
         button2.className = 'active';
-      }
-    };
-
-    button3.onclick = function () {
-      if (button3.className === 'active') {
-        map.setLayoutProperty('Piacenza Chiese Scomparse', 'visibility', 'none');
-        button3.className = 'inactive';
-      } else {
-        InactiveButtons();
-        map.setLayoutProperty('Piacenza Chiese Scomparse', 'visibility', 'visible');
-        button3.className = 'active';
       }
     };
 
@@ -556,6 +517,17 @@
         button5.className = 'active';
       }
     };
+    
+    button11.onclick = function () {
+      if (button11.className === 'active') {
+        map.setLayoutProperty('Piacenza Mura 1540', 'visibility', 'none');
+        button11.className = 'inactive';
+      } else {
+        InactiveButtons();
+        map.setLayoutProperty('Piacenza Mura 1540', 'visibility', 'visible');
+        button11.className = 'active';
+      }
+    };
 
     button6.onclick = function () {
       if (button6.className === 'active') {
@@ -564,16 +536,6 @@
       } else {
         map.setLayoutProperty('Satellitare Google', 'visibility', 'visible');
         button6.className = 'active';
-      }
-    };
-
-    button11.onclick = function () {
-      if (button11.className === 'active') {
-        map.setLayoutProperty('Piacenza Mura 1540', 'visibility', 'none');
-        button11.className = 'inactive';
-      } else {
-        map.setLayoutProperty('Piacenza Mura 1540', 'visibility', 'visible');
-        button11.className = 'active';
       }
     };
 
@@ -586,8 +548,6 @@
       button1.className = 'inactive';
       map.setLayoutProperty('Piacenza Canali 1862', 'visibility', 'none');
       button2.className = 'inactive';
-      map.setLayoutProperty('Piacenza Chiese Scomparse', 'visibility', 'none');
-      button3.className = 'inactive';
       map.setLayoutProperty('Piacenza Fortificazioni', 'visibility', 'none');
       button4.className = 'inactive';
       map.setLayoutProperty('Piacenza La Tagliata', 'visibility', 'none');
@@ -600,7 +560,6 @@
       button0.className = 'active';
       button1.style.display = "block";
       button2.style.display = "block";
-      button3.style.display = "block";
       button4.style.display = "block";
       button5.style.display = "block";
       button6.style.display = "block";
@@ -615,7 +574,6 @@
       button0.className = 'inactive';
       button1.style.display = "none";
       button2.style.display = "none";
-      button3.style.display = "none";
       button4.style.display = "none";
       button5.style.display = "none";
       button6.style.display = "none";

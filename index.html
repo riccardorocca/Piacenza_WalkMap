@@ -254,6 +254,7 @@
             'icon-allow-overlap': true
         }
       });
+      map.setLayoutProperty('chiese', 'visibility', 'none');
 
       map.on('click', 'chiese', function (e) {
           var coordinates = e.features[0].geometry.coordinates.slice();
@@ -456,7 +457,7 @@
       window.open("https://www.marcostucchi.com/panoramiche/virtualtour/mappabolzoni_v2/tour.html");
     });
 
-    button7.className = 'inactive';
+    //button7.className = 'inactive';
     button7.onclick = function () {
       if (button7.className === 'active') {
         map.setLayoutProperty('places', 'visibility', 'none');
@@ -469,7 +470,7 @@
       }
     };
 
-    button10.className = 'active';
+    //button10.className = 'inactive';
     button10.onclick = function () {
       if (button10.className === 'active') {
         map.setLayoutProperty('chiese', 'visibility', 'none');

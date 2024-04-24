@@ -64,6 +64,7 @@
   <button id="HtmlButton8">Informazioni</button>
   <button id="HtmlButton7"><img src="https://riccardorocca.github.io/Piacenza_WalkMap/legend.png"></button>
   <button id="HtmlButton10"><img src="https://riccardorocca.github.io/Piacenza_WalkMap/legend4.png"></button>
+  <button id="HtmlButton3">Pianta Madre (link)</button>
   <button id="HtmlButton1">Mura Archistorica</button>
   <button id="HtmlButton4">Mura e Fortificazioni</button>
   <button id="HtmlButton11">Mura 1540</button>
@@ -77,6 +78,7 @@
   var button0 = document.getElementById( 'HtmlButton0' );
   var button1 = document.getElementById( 'HtmlButton1' );
   var button2 = document.getElementById( 'HtmlButton2' );
+  var button3 = document.getElementById( 'HtmlButton3' );
   var button4 = document.getElementById( 'HtmlButton4' );
   var button5 = document.getElementById( 'HtmlButton5' );
   var button6 = document.getElementById( 'HtmlButton6' );
@@ -446,6 +448,14 @@
       }
     };
 
+    button8.addEventListener( 'click', function() {
+      window.open("https://sites.google.com/view/riccardorocca/piacenza-walkmap");
+    });
+
+    button3.addEventListener( 'click', function() {
+      window.open("https://www.marcostucchi.com/panoramiche/virtualtour/mappabolzoni_v2/tour.html");
+    });
+
     button7.className = 'inactive';
     button7.onclick = function () {
       if (button7.className === 'active') {
@@ -517,7 +527,7 @@
         button5.className = 'active';
       }
     };
-    
+
     button11.onclick = function () {
       if (button11.className === 'active') {
         map.setLayoutProperty('Piacenza Mura 1540', 'visibility', 'none');
@@ -538,6 +548,10 @@
         button6.className = 'active';
       }
     };
+
+    button3.addEventListener( 'click', function() {
+      window.open("https://www.marcostucchi.com/panoramiche/virtualtour/mappabolzoni_v2/tour.html");
+    });
 
     button8.addEventListener( 'click', function() {
       window.open("https://sites.google.com/view/riccardorocca/piacenza-walkmap");
@@ -560,6 +574,7 @@
       button0.className = 'active';
       button1.style.display = "block";
       button2.style.display = "block";
+      button3.style.display = "block";
       button4.style.display = "block";
       button5.style.display = "block";
       button6.style.display = "block";
@@ -574,6 +589,7 @@
       button0.className = 'inactive';
       button1.style.display = "none";
       button2.style.display = "none";
+      button3.style.display = "none";
       button4.style.display = "none";
       button5.style.display = "none";
       button6.style.display = "none";

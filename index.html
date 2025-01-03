@@ -463,12 +463,13 @@
     button7.onclick = function () {
       if (button7.className === 'active') {
         map.setLayoutProperty('places', 'visibility', 'none');
+        map.setLayoutProperty('Piacenza Canali', 'visibility', 'none');
         button7.className = 'inactive';
       } else {
         map.setLayoutProperty('places', 'visibility', 'visible');
+        map.setLayoutProperty('Piacenza Canali', 'visibility', 'visible');
         button7.className = 'active';
         map.setLayoutProperty('chiese', 'visibility', 'none');
-        map.setLayoutProperty('Piacenza Canali', 'visibility', 'none');
         button10.className = 'inactive';
       }
     };
@@ -477,13 +478,12 @@
     button10.onclick = function () {
       if (button10.className === 'active') {
         map.setLayoutProperty('chiese', 'visibility', 'none');
-        map.setLayoutProperty('Piacenza Canali', 'visibility', 'none');
         button10.className = 'inactive';
       } else {
         map.setLayoutProperty('chiese', 'visibility', 'visible');
-        map.setLayoutProperty('Piacenza Canali', 'visibility', 'visible');
         button10.className = 'active';
         map.setLayoutProperty('places', 'visibility', 'none');
+        map.setLayoutProperty('Piacenza Canali', 'visibility', 'none');
         button7.className = 'inactive';
       }
     };

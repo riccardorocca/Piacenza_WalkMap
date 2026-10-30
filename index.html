@@ -71,6 +71,7 @@
   <button id="HtmlButton5">La Tagliata 1587</button>
   <button id="HtmlButton12">Piacenza 1780</button>
   <button id="HtmlButton2">Canali 1862</button>
+  <button id="HtmlButton13">Piacenza 1887</button>
   <button id="HtmlButton6">Vista Satellitare</button>
 </div>
 
@@ -88,6 +89,7 @@
   var button10 = document.getElementById( 'HtmlButton10' );
   var button11 = document.getElementById( 'HtmlButton11' );
   var button12 = document.getElementById( 'HtmlButton12' );
+  var button13 = document.getElementById( 'HtmlButton13' );
   HideMaps();
 
 	mapboxgl.accessToken = 'pk.eyJ1Ijoicmljcm9jIiwiYSI6ImNpanZyajMxYTBhdmZ0dG01bmVsbG8ybzcifQ.RdmNKeWGLY_fqRmUrM9m4w';
@@ -556,6 +558,17 @@
       }
     };
 
+    button13.onclick = function () {
+      if (button13.className === 'active') {
+        map.setLayoutProperty('Piacenza 1887', 'visibility', 'none');
+        button13.className = 'inactive';
+      } else {
+        InactiveButtons();
+        map.setLayoutProperty('Piacenza 1887', 'visibility', 'visible');
+        button13.className = 'active';
+      }
+    };
+
     button6.onclick = function () {
       if (button6.className === 'active') {
         map.setLayoutProperty('Satellitare Google', 'visibility', 'none');
@@ -587,6 +600,8 @@
       button11.className = 'inactive';
       map.setLayoutProperty('Piacenza 1780', 'visibility', 'none');
       button12.className = 'inactive';
+      map.setLayoutProperty('Piacenza 1887', 'visibility', 'none');
+      button13.className = 'inactive';
     }
 
     function ShowMaps() {
@@ -602,6 +617,7 @@
       button10.style.display = "block";
       button11.style.display = "block";
       button12.style.display = "block";
+      button13.style.display = "block";
       return;
     }
 
@@ -618,6 +634,7 @@
       button10.style.display = "none";
       button11.style.display = "none";
       button12.style.display = "none";
+      button13.style.display = "none";
       return;
     }
 
